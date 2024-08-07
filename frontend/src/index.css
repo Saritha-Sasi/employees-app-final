@@ -24,7 +24,6 @@ a:hover {
 
 body {
   text-align: center;
-  margin: 170px auto;
   display: block;
   place-items: center;
 }
@@ -145,4 +144,40 @@ select.input-box {
   width: 100%;
   padding: 5px;
   margin-bottom: 20px;
+}
+ul.nav-ul {
+  background: skyblue;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+ul.nav-ul li {
+  list-style: none;
+  padding: 15px;
+}
+
+ul.nav-ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+img.logo {
+  width: 75px;
+  position: absolute;
+  text-align: left;
+  left: 85px;
+}
+
+.footer {
+  background: skyblue;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer h5 {
+  text-align: center;
+
 }

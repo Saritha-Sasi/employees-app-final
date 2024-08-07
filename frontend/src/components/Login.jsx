@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,15 @@ const Login = () => {
   const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
+
+  useEffect(()=>{
+    const auth =localStorage.getItem('user');
+    if(auth){
+        navigate('/')
+    }        
+},[]);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,6 +26,7 @@ const Login = () => {
         type: 'LOGIN_SUCCESS',
         payload: res.data,
       });
+      localStorage.setItem("user", JSON.stringify(res));
       navigate('/employees'); // use navigate instead of history.push
     } catch (error) {
       console.error(error);
