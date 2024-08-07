@@ -1,33 +1,22 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import cookieparser from 'cookie-parser';
-import DbCon from './utlis/db.js';
-import AuthRoutes from './routes/Auth.js';
-import AdminRoutes from './routes/AdminRoutes.js';
+const express = require('express');
+const connectDB = require('./config/db');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const authRoutes = require('./routes/auth');
+const employeeRoutes = require('./routes/employees');
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+connectDB();
+
 const app = express();
 
-// MongoDB connection
-DbCon();
-
+app.use(cors());
 app.use(express.json());
-app.use(cookieparser());
-app.use(cors({
-  credentials: true,
-  origin: 'http://localhost:5173'
-}));
 
-app.use('/api/auth', AuthRoutes);
-app.use('/api/admin', AdminRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/employees', employeeRoutes);
 
-app.get('/', (req, res) => {
-  res.send('test');
-});
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

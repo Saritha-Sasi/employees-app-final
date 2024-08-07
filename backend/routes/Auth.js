@@ -1,11 +1,8 @@
-import express from 'express'
-import { CheckUser, Login, Logout, register } from '../controllers/Auth.js'
-import {IsUser} from '../middleware/verifyToken.js'
-const AuthRoutes=express.Router()
+const express = require('express');
+const { registerUser, authUser } = require('../controllers/authController');
+const router = express.Router();
 
-AuthRoutes.post('/register',register)
-AuthRoutes.post('/login',Login)
-AuthRoutes.post('/logout',Logout)
-AuthRoutes.get('/CheckUser',IsUser,CheckUser)
+router.post('/register', registerUser);
+router.post('/login', authUser);
 
-export default AuthRoutes
+module.exports = router;
