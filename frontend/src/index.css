@@ -156,6 +156,8 @@ ul.nav-ul {
 ul.nav-ul li {
   list-style: none;
   padding: 15px;
+  color: #fff;
+  font-weight: 700;
 }
 
 ul.nav-ul li a {
